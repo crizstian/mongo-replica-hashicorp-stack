@@ -4,6 +4,9 @@ variable "region" {
   description = "region to deploy the infraestructre"
   default     = "us-west-1"
 }
+variable "aws_account" {
+  description = "specify your aws number accout"
+}
 
 variable "cluster_name" {
   default = "aero-db-cluster"
@@ -25,6 +28,10 @@ variable "db_instance_type" {
   default = "t2.small"
 }
 
+variable "proxy_instance_type" {
+  default = "t2.small"
+}
+
 variable "dbUser" {
   default = "cristian"
 }
@@ -39,10 +46,6 @@ variable "dbReplicaAdminPass" {
 }
 variable "dbReplSetName" {
   default = "rs1"
-}
-
-variable "bastion_cluster_name" {
-  default = "aero-bastion-cluster"
 }
 
 variable "bastion_cidr" {
