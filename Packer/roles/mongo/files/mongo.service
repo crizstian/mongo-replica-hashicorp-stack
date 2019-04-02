@@ -1,0 +1,17 @@
+[Unit]
+Description=One time configuration for mongodb
+After=local-fs.target
+After=network-online.target
+After=cloud.service
+
+[Service]
+Type=oneshot
+Restart=no
+RemainAfterExit=true
+SuccessExitStatus=0 SIGINT
+KillSignal=SIGINT
+ExecStart=/bin/bash /var/mongo/mongo-service.sh
+ExecStopPost=/bin/sleep 10
+
+[Install]
+WantedBy=multi-user.target

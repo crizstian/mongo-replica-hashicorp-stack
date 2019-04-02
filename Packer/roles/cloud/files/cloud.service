@@ -1,0 +1,16 @@
+[Unit]
+Description=One time configuration for machines
+After=local-fs.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+Restart=no
+RemainAfterExit=true
+SuccessExitStatus=0 SIGINT
+KillSignal=SIGINT
+ExecStart=/bin/bash /var/aero/systemd_scripts/cloud-service.sh
+ExecStopPost=/bin/sleep 10
+
+[Install]
+WantedBy=multi-user.target

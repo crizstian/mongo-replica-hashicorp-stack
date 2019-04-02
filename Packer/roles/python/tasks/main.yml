@@ -1,0 +1,16 @@
+#Setup env for building binary from Python scripts
+---
+- name: Install Python and pip packages
+  apt: pkg={{ item }} state=present
+  with_items:
+    - python
+    - python-dev
+    - python-pip
+    - python-software-properties
+
+- name: Install Python build packages for building binary
+  pip: name={{ item }} state=present
+  with_items:
+    - pyinstaller
+    - virtualenv
+    - awscli

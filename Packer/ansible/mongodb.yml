@@ -1,0 +1,10 @@
+---
+# Installation steps
+- hosts: all
+  roles:
+  - python
+  - os
+  - cloud
+  - consul-template
+  - docker
+  - mongo

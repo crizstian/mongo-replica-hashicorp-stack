@@ -1,0 +1,4 @@
+consul_template_version: "0.19.5"
+docker_version: "18.09.1"
+rel_hashi: "https://releases.hashicorp.com"
+cloud_user_script_path: "/var/aero/cloud/user-scripts"

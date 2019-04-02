@@ -1,0 +1,78 @@
+---
+- file:
+    path: /var/mongo/
+    state: directory
+    mode: 0755
+
+- name: copy the mongo-keyfile
+  copy:
+    src: mongo-keyfile
+    dest: /var/mongo/mongo-keyfile
+    mode: 0600
+
+- name: copy the pre-start.sh
+  copy:
+    src: pre-start.sh
+    dest: /var/mongo/pre-start.sh
+    mode: 0755
+
+- name: copy the start.sh
+  copy:
+    src: start.sh
+    dest: /var/mongo/start.sh
+    mode: 0755
+
+- name: copy the mongo-service.sh
+  copy:
+    src: mongo-service.sh
+    dest: /var/mongo/mongo-service.sh
+    mode: 0755
+
+- name: copy the primary-db-only.sh
+  copy:
+    src: primary-db-only.sh
+    dest: /var/mongo/primary-db-only.sh
+    mode: 0755
+
+- template:
+   src: replica.js.j2
+   dest: /var/mongo/replica.js.ctmpl
+   variable_start_string: "[["
+   variable_end_string: "]]"
+   mode: 0755
+
+- template:
+   src: admin.js.j2
+   dest: /var/mongo/admin.js.ctmpl
+   variable_start_string: "[["
+   variable_end_string: "]]"
+   mode: 0755
+
+- template:
+   src: grantRole.js.j2
+   dest: /var/mongo/grantRole.js.ctmpl
+   variable_start_string: "[["
+   variable_end_string: "]]"
+   mode: 0755
+
+- file:
+    path: /var/mongo/db_test
+    state: directory
+    mode: 0755
+    recurse: yes
+
+- copy:
+    src: bookstore
+    dest: /var/mongo/db_test
+    directory_mode: True
+    mode: 0755
+
+- copy:
+    src: cinemas
+    dest: /var/mongo/db_test
+    directory_mode: True
+    mode: 0755
+
+- copy:
+    src: mongo.service
+    dest: /etc/systemd/system/mongo.service

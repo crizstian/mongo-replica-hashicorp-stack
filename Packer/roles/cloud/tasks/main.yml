@@ -1,0 +1,43 @@
+- file:
+    path: /var/aero/cloud/cloud-helper
+    state: directory
+    mode: 0755
+    recurse: yes
+
+- file:
+    path: "{{cloud_user_script_path}}"
+    state: directory
+    mode: 0755
+    recurse: yes
+
+- copy:
+    src: aws
+    dest: /var/aero/cloud/cloud-helper
+    directory_mode: True
+    mode: 0755
+
+- copy:
+    src: gce
+    dest: /var/aero/cloud/cloud-helper
+    directory_mode: True
+    mode: 0755
+
+- copy:
+    src: cloud.service
+    dest: /etc/systemd/system/cloud.service
+
+- file:
+    path: /var/aero/systemd_scripts
+    state: directory
+    mode: 0755
+
+- copy:
+    src: cloud-service.sh
+    dest: /var/aero/systemd_scripts/cloud-service.sh
+    mode: 0755
+
+- name: Enable cloud service
+  systemd:
+    name: cloud.service
+    enabled: yes
+    masked: no

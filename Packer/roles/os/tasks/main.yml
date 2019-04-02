@@ -1,0 +1,55 @@
+---
+- name: Packages installation
+  action: apt pkg="{{item}}" state=installed
+  with_items:
+    - curl
+    - zip
+    - unzip
+    - gzip
+    - ethtool
+    - iptables-persistent
+    - inetutils-traceroute
+    - jq
+
+- copy:
+    src: "/home/ubuntu/.bashrc"
+    dest: "/root"
+    remote_src: true
+    owner: root
+    mode: 0755
+
+- copy:
+    src: "/home/ubuntu/.bash_logout"
+    dest: "/root"
+    remote_src: true
+    owner: root
+    mode: 0755
+
+- copy:
+    src: "/home/ubuntu/.profile"
+    dest: "/root"
+    remote_src: true
+    owner: root
+    mode: 0755
+
+- copy:
+    src: 01.update-iptables-common.sh
+    dest: "{{cloud_user_script_path}}/"
+    mode: 0755
+
+- file:
+    path: /usr/local/bin
+    state: directory
+    recurse: yes
+    mode: 0755
+
+- file:
+    path: /var/aero/util
+    state: directory
+    recurse: yes
+    mode: 0755
+
+- copy:
+    src: iptables-helper.sh
+    dest: /var/aero/util/
+    mode: 0755

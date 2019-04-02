@@ -1,0 +1,7 @@
+# Consul Template installation steps
+- name: Install Consul Template
+  unarchive:
+    remote_src: yes
+    src: "{{rel_hashi}}/consul-template/{{consul_template_version}}/consul-template_{{consul_template_version}}_linux_amd64.zip"
+    dest: /usr/local/bin
+    mode: 0755
