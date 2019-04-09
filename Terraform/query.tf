@@ -1,3 +1,5 @@
+data "aws_availability_zones" "available_zones" {}
+
 data "aws_ami" "db_image" {
   most_recent = true
   owners      = ["${var.aws_account}"]
@@ -13,7 +15,20 @@ data "aws_ami" "db_image" {
   }
 }
 
-data "aws_availability_zones" "available_zones" {}
+data "aws_ami" "proxy_image" {
+  most_recent = true
+  owners      = ["099720109477"]
+
+  filter {
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-20190212"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+}
 
 data "template_file" "user_data_db" {
   template = "${file("${path.module}/bin/user-data-db.sh")}"
@@ -28,20 +43,5 @@ data "template_file" "user_data_db" {
     access_key         = "${var.access_key}"
     secret_key         = "${var.secret_key}"
     region             = "${var.region}"
-  }
-}
-
-data "aws_ami" "proxy_image" {
-  most_recent = true
-  owners      = ["099720109477"]
-
-  filter {
-    name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-20190212"]
-  }
-
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
   }
 }

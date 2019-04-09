@@ -1,4 +1,4 @@
-use movies
+use cinemas
 
 db.movies.insertMany([{
   id: '1',

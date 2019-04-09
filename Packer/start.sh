@@ -8,8 +8,5 @@ function buildImage {
   /usr/local/bin/packer build -force $2.json
 }
 
-# buildImage ncv aws  
-# buildImage ch aws 
-# buildImage proxyvm aws 
+# example buildImage bastionvm aws 
 buildImage mongodb aws 
-# wait # waits for all background processes to complete

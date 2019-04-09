@@ -2,7 +2,6 @@ resource "aws_security_group" "bastion_sg" {
   description = "Enable HTTP ingress"
   vpc_id      = "${aws_vpc.bastion_vpc.id}"
 
-  # Allow SSH: users --> Bastion
   ingress {
     from_port   = 22
     to_port     = 22
@@ -70,6 +69,12 @@ resource "aws_security_group" "bastion_private_sg" {
     to_port     = 27017
     protocol    = "tcp"
     cidr_blocks = ["${var.bastion_cidr}"]
+  }
+  egress {
+    from_port   = 0
+    to_port     = 65535
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
   egress {
     from_port   = -1

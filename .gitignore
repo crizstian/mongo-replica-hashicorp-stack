@@ -1,0 +1,29 @@
+go_creds.sh
+*.pem
+
+# Terraform generated files #
+*.tfstate
+*.tfstate.backup
+.terraform/
+terraform.tfvars
+
+# Windows generated files #
+Thumbs.db
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msm
+*.msp
+*.lnk
+
+# OS generated files #
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db 
