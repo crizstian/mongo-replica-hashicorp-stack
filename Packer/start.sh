@@ -1,7 +1,9 @@
 # /bin/bash
 chmod +x environment.sh
 
-. ./environment.sh
+# add aws keys
+AWS_ACCESS_KEY=
+AWS_SECRET_KEY=
 
 function buildImage {
   export MACHINE_TYPE=$1
