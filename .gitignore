@@ -5,7 +5,7 @@ go_creds.sh
 *.tfstate
 *.tfstate.backup
 .terraform/
-terraform.tfvars
+terraform*
 
 # Windows generated files #
 Thumbs.db

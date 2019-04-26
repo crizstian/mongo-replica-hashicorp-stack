@@ -1,8 +1,9 @@
-data "aws_availability_zones" "available_zones" {}
+data "aws_availability_zones" "available_zones" {
+}
 
 data "aws_ami" "db_image" {
   most_recent = true
-  owners      = ["${var.aws_account}"]
+  owners      = [var.aws_account]
 
   filter {
     name   = "name"
@@ -31,17 +32,17 @@ data "aws_ami" "proxy_image" {
 }
 
 data "template_file" "user_data_db" {
-  template = "${file("${path.module}/bin/user-data-db.sh")}"
+  template = file("${path.module}/bin/user-data-db.sh")
 
-  vars {
-    dbAdminUser        = "${var.dbUser}"
-    dbAdminUserPass    = "${var.dbUserPass}"
-    dbReplicaAdmin     = "${var.dbReplicaAdmin}"
-    dbReplicaAdminPass = "${var.dbReplicaAdminPass}"
-    dbReplSetName      = "${var.dbReplSetName}"
-
-    access_key         = "${var.access_key}"
-    secret_key         = "${var.secret_key}"
-    region             = "${var.region}"
+  vars = {
+    dbAdminUser        = var.dbUser
+    dbAdminUserPass    = var.dbUserPass
+    dbReplicaAdmin     = var.dbReplicaAdmin
+    dbReplicaAdminPass = var.dbReplicaAdminPass
+    dbReplSetName      = var.dbReplSetName
+    access_key         = var.access_key
+    secret_key         = var.secret_key
+    region             = var.region
   }
 }
+

@@ -1,9 +1,14 @@
-variable "access_key" {}
-variable "secret_key" {}
+variable "access_key" {
+}
+
+variable "secret_key" {
+}
+
 variable "region" {
   description = "region to deploy the infraestructre"
   default     = "us-west-1"
 }
+
 variable "aws_account" {
   description = "specify your aws number accout"
 }
@@ -35,15 +40,19 @@ variable "proxy_instance_type" {
 variable "dbUser" {
   default = "cristian"
 }
+
 variable "dbUserPass" {
   default = "cristianPassword2017"
 }
+
 variable "dbReplicaAdmin" {
   default = "replicaAdmin"
 }
+
 variable "dbReplicaAdminPass" {
   default = "replicaAdminPassword2017"
 }
+
 variable "dbReplSetName" {
   default = "rs1"
 }
@@ -63,3 +72,4 @@ variable "bastion_public_cidr" {
 variable "ssh_key_name" {
   description = "The name of an EC2 Key Pair that can be used to SSH to the EC2 Instances in this cluster."
 }
+
