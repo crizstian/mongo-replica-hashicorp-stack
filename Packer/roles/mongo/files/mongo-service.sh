@@ -6,7 +6,7 @@ exec > >(tee /var/log/user-data.log|logger -t user-data -s 2>/dev/console) 2>&1
 . /etc/environment
 
 DB_HOST=`echo ${hostname} | sed -e 's/ip-//'`
-IP=`ip -f inet addr show eth0 | grep -Po 'inet \K[\d.]+'`
+IP=`ip -f inet addr show $(ip -f inet route show | grep default | awk '{ print $5 }') | grep -Po 'inet \K[\d.]+'`
 DB_PORT=27017
 BOOKSTORE_DBUSER=bookstore
 BOOKSTORE_DBPASS=bookstorepass1
